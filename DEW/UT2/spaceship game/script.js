@@ -25,7 +25,7 @@ function initCanvas(){
             h: options.h  || '',
             image: options.image || enemyShip1
         };
-
+    }
 
         //
         let enemies = [
