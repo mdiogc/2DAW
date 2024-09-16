@@ -91,7 +91,7 @@ function initCanvas(){
                     this.x += 5;
                 } else if (this.direction === "downArrow") {
                     this.y += 5;
-                } else (this.direction === "upArrow") { 
+                } else if (this.direction === "upArrow") { 
                     this.y -= 5; 
                 
                 }
