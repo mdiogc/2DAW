@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego del Uno</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #game-board {
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .card {
+            display: inline-block;
+            width: 50px;
+            height: 75px;
+            margin: 5px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #000;
+            font-size: 20px;
+            line-height: 75px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-board">
+        <h1>Juego del Uno</h1>
+        <div id="player-hand">
+            <!-- Aquí se mostrarán las cartas del jugador -->
+        </div>
+        <div id="deck">
+            <div id="top-card" class="card"></div>
+            <div id="deck-count"></div>
+        </div>
+        <button onclick="startGame()">Iniciar Juego</button>
+    </div>
+
+    <script>
+        const colors = ['rojo', 'amarillo', 'verde', 'azul'];
+        const values = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'salta', 'reversa', '+2'];
+        let deck = [];
+
+        // Crear el mazo
+        for (let color of colors) {
+            for (let value of values) {
+                deck.push({ color, value });
+                if (value !== '0') {
+                    deck.push({ color, value }); // Añadir dos de cada carta excepto '0'
+                }
+            }
+        }
+
+        // Añadir cartas especiales
+        const specialCards = ['comodín', 'comodín+4'];
+        for (let i = 0; i < 4; i++) {
+            deck.push({ color: 'especial', value: specialCards[0] });
+            deck.push({ color: 'especial', value: specialCards[1] });
+        }
+
+        // Barajar el mazo
+        deck = deck.sort(() => Math.random() - 0.5);
+
+        // Repartir cartas a los jugadores
+        const player = [];
+        const computer = [];
+        for (let i = 0; i < 7; i++) {
+            player.push(deck.pop());
+            computer.push(deck.pop());
+        }
+
+        // Mostrar las cartas del jugador
+        function displayPlayerHand() {
+            const playerHandDiv = document.getElementById('player-hand');
+            playerHandDiv.innerHTML = '';
+            player.forEach((card, index) => {
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'card';
+                cardDiv.innerText = `${card.color} ${card.value}`;
+                cardDiv.onclick = () => playCard(player, index);
+                playerHandDiv.appendChild(cardDiv);
+            });
+        }
+
+        // Mostrar la carta superior del mazo
+        function displayTopCard() {
+            const topCardDiv = document.getElementById('top-card');
+            const topCard = deck[deck.length - 1];
+            topCardDiv.innerText = `${topCard.color} ${topCard.value}`;
+        }
+
+        // Actualizar el conteo de cartas en el mazo
+        function updateDeckCount() {
+            const deckCountDiv = document.getElementById('deck-count');
+            deckCountDiv.innerText = `Cartas restantes: ${deck.length}`;
+        }
+
+        // Función para jugar una carta
+        function playCard(player, cardIndex) {
+            const card = player[cardIndex];
+            console.log(`Jugador juega ${card.color} ${card.value}`);
+            player.splice(cardIndex, 1); // Eliminar la carta jugada del jugador
+            displayPlayerHand();
+            updateDeckCount();
+            computerPlay();
+        }
+
+        // Función para que el ordenador juegue una carta
+        function computerPlay() {
+            const cardIndex = Math.floor(Math.random() * computer.length);
+            const card = computer[cardIndex];
+            console.log(`Ordenador juega ${card.color} ${card.value}`);
+            computer.splice(cardIndex, 1); // Eliminar la carta jugada del ordenador
+            // Aquí puedes añadir la lógica para verificar si la carta es válida y aplicar efectos
+        }
+
+        // Iniciar el juego
+        function startGame() {
+            displayPlayerHand();
+            displayTopCard();
+            updateDeckCount();
+            alert('El juego ha comenzado!');
+        }
+    </script>
+</body>
+</html>
