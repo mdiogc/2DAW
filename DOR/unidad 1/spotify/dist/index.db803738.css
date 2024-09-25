@@ -1,14 +1,15 @@
 .flex {
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   margin-left: auto;
   margin-right: auto;
 }
 
 .item {
-  background-color: grey;
-  height: 200px;
-  width: 200px;
+  background-color: gray;
   flex-direction: column;
+  width: 200px;
+  height: 200px;
   display: inline-flex;
 }
+/*# sourceMappingURL=index.db803738.css.map */
