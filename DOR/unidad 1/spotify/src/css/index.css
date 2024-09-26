@@ -5,6 +5,7 @@ body {
   justify-content: center;
   height: 100vh;
   background-image: url("../assets/images/pipi.jpeg");
+  background-size: contain;
 }
 
 .item {
