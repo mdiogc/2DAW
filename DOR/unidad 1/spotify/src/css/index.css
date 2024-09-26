@@ -1,14 +1,27 @@
-.flex {
-  align-items: center;
+body {
+  display: flex;
   flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
 }
 
 .item {
   background-color: grey;
   height: 200px;
   width: 200px;
-  flex-direction: column;
-  display: inline-flex;
+  margin-bottom: 20px; 
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover; 
 }
