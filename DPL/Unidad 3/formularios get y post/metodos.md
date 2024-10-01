@@ -1,7 +1,3 @@
-# Redireccionamiento entre páginas PHP.
-<div align=center>
-
-
 ## Introducción
 El redireccionamiento entre páginas web es una técnica común utilizada en desarrollo web para guiar a los usuarios de una página a otra de manera automática. En PHP, esto se logra principalmente mediante la función `header()`, que envía encabezados HTTP al navegador para indicar que debe realizar una nueva solicitud a una URL específica. Este informe explora el uso del redireccionamiento con ejemplos prácticos que incluyen el envío de parámetros entre páginas utilizando el método **GET**.
 
@@ -125,4 +121,3 @@ Es esencial seguir buenas prácticas de validación y sanitización de datos par
 Este ejemplo ha demostrado cómo pasar un parámetro desde una página a otra utilizando un redireccionamiento, y cómo manejar estos datos en el flujo de una aplicación web.
 
 
-</div>
