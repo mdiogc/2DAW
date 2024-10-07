@@ -6,9 +6,12 @@ body {
   height: 100vh;
   background-image: url("../assets/images/pipi.jpeg");
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
+/* Alinear items en columna */
 .item {
+  position: relative;
   background-color: grey;
   height: 200px;
   width: 200px;
@@ -21,8 +24,61 @@ body {
   align-items: center;
 }
 
+/* Estilo para la imagen */
 .item img {
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+/* Creación del vinilo */
+.vinyl {
+  position: absolute; /* Para colocar el vinilo detrás de la imagen */
+  top: 0;
+  left: 0;
+  background: black;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  z-index: 0; /* Colocar el vinilo detrás de la imagen */
+  transform: scale(0); /* Ocultar el vinilo inicialmente */
+  transition: transform 0.5s ease-in-out; /* Transición suave al mostrar/ocultar */
+}
+
+/* Cuando el vinilo debe mostrarse */
+.vinyl.show {
+  transform: scale(1); /* Mostrar el vinilo cuando se hace clic */
+  z-index: 1; /* Asegurar que aparezca por encima de la imagen */
+}
+
+/* Detalles dentro del vinilo */
+.detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(0, 153, 255);
+  border-radius: 50%;
+  width: 135px;
+  height: 135px;
+  margin: auto;
+  z-index: 1;
+}
+
+.lable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(91, 208, 247);
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  z-index: 1;
+}
+
+.hole {
+  background: white;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
 }

@@ -2,15 +2,17 @@ import Song, { play_song } from "../js/songs.js";
 
 export default class Player {
   constructor(map) {
-    Object.entries(map);
     let aux = 1;
-    for (var [key, value] of Object.entries(map)) {
-      const song = new Song(key, value);
-      play_song(song);
 
-      // Crea la instancia para Song
-      // Invoca la funcion para reproducir la cancion
-      //aux++;
+    // Crear una instancia de Song y asociar cada canción con su contenedor
+    for (var [key, value] of Object.entries(map)) {
+      const s_key = key; // La clave que asocia el item (e.g. ".item-1")
+      const s_value = value; // El archivo de la canción
+      const s_cover = `.cv${aux}`; // Esto parece ser el selector de la portada del álbum
+
+      const song = new Song(s_key, s_value, s_cover);
+      play_song(song); // Llamamos a la función para que la canción se reproduzca al hacer clic
+      aux++;
     }
   }
 }
