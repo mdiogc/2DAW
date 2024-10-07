@@ -61,11 +61,14 @@ const showLegend = () => {
                                             <div class="title">
                                                 Title: ${legends[i].title}<br>
                                             </div>
-                                            <div class="title">
+                                            <div class="Tags">
                                                 Tags: ${legends[i].tags && legends[i].tags.length > 0 ? legends[i].tags.join(' & ') : 'No tags available'}<br>
                                             </div>
                                             <div class="stats">
-                                                Attack: ${legends[i].attack}, Defense: ${legends[i].defense}, Magic: ${legends[i].magic}, Difficulty: ${legends[i].difficulty}
+                                                Attack: ${legends[i].attack},
+                                                Defense: ${legends[i].defense}, 
+                                                Magic: ${legends[i].magic}, 
+                                                Difficulty: ${legends[i].difficulty}
                                             </div>
                                       </div>`;
     }
