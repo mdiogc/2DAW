@@ -1,0 +1,50 @@
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background-image: url('hobbit.jpeg');
+    background-repeat: no-repeat;
+    background-size:auto;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    margin-bottom: 30px;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #c0392b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+button:hover {
+    background-color: #e74c3c;
+    transform: scale(1.05);
+}
+
+#resultado {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+strong {
+    color: #f1c40f;
+}

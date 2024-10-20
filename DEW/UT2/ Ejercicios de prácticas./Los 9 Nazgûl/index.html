@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nazgûl</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Nazgûl de El Señor de los Anillos</h1>
+    <ul id="nazgul-list">
+        <li>Nazgûl 1</li>
+        <li>Nazgûl 2</li>
+        <li>Nazgûl 3</li>
+        <li>Nazgûl 4</li>
+        <li>Nazgûl 5</li>
+        <li>Nazgûl 6</li>
+        <li>Nazgûl 7</li>
+        <li>Nazgûl 8</li>
+        <li>Nazgûl 9</li>
+    </ul>
+
+    <script>
+        const nazgulItems = document.querySelectorAll('#nazgul-list li');
+
+        nazgulItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.textContent = 'Nazgûl';
+                this.style.backgroundColor = 'black';
+                this.style.color = 'white';
+            });
+
+            item.addEventListener('mouseleave', function() {
+                const index = Array.from(nazgulItems).indexOf(this);
+                this.textContent = `Nazgûl ${index + 1}`;
+                this.style.backgroundColor = '';
+                this.style.color = '';
+            });
+        });
+    </script>
+</body>
+</html>

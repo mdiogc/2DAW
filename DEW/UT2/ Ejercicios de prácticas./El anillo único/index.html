@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personajes de El Señor de los Anillos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>El Señor de los Anillos</h1>
+    <ul id="personajes">
+        <li>Frodo Baggins</li>
+        <li>Samwise Gamgee</li>
+        <li>Gandalf</li>
+        <li>Aragorn</li>
+        <li>Legolas</li>
+        <li>Gimli</li>
+        <li>Sauron</li>
+    </ul>
+    <button id="encontrarAnillo">Encontrar el Anillo</button>
+
+    <script>
+        document.getElementById('encontrarAnillo').addEventListener('click', function() {
+            const personajes = document.querySelectorAll('#personajes li');
+            personajes.forEach(function(personaje) {
+                if (personaje.textContent === 'Frodo Baggins') {
+                    personaje.style.backgroundColor = 'yellow';
+                } else {
+                    personaje.style.backgroundColor = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
