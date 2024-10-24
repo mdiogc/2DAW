@@ -111,7 +111,7 @@
         <script>
         $(document).ready(function(){
 
-            // Ejercicio 1: Evento .click() - La Puerta del Bosque
+            // Ejercicio 1
             $("#entrar").click(function() {
                 $("#mensaje").show();
                 $("#entrar").hide();
@@ -124,26 +124,26 @@
                 $("#entrar").show();
             });
 
-            // Ejercicio 2: Evento .dblclick() - El Reflejo en el Agua
+            // Ejercicio 2
             $("#agua").dblclick(function() {
                 $(this).text("¡El espíritu atrapado se revela en el agua!");
             });
 
-            // Ejercicio 3: Evento .hover() - Sombras Sigilosas
+            // Ejercicio 3
             $("#sombras").hover(function() {
-                $(this).css("color", "#444"); // Cambiar a un tono más oscuro
+                $(this).css("color", "#444"); 
             }, function() {
-                $(this).css("color", "#f4f4f4"); // Volver al color original
+                $(this).css("color", "#f4f4f4"); 
             });
 
-            // Ejercicio 4: Eventos .focus() y .blur() - El Ojo Vigilante
+            // Ejercicio 4
             $("#ojo").focus(function() {
                 $("#ojo-img").attr("src", "./img/ojo-abierto.jpg");
             }).blur(function() {
                 $("#ojo-img").attr("src", "./img/ojo-cerrado.jpg");
             });
 
-            // Ejercicio 5: Evento .change() - El Bosque Cambiante
+            // Ejercicio 5
             $("#paisaje").change(function() {
                 const valor = $(this).val();
                 if (valor === "dia") {
@@ -153,13 +153,13 @@
                 }
             });
 
-            // Ejercicio 6: Evento .submit() - El Altar Maldito
+            // Ejercicio 6
             $("#invocacion").submit(function(event) {
-                event.preventDefault(); // Prevenir el envío real del formulario
+                event.preventDefault();
                 $("#resultado-invocacion").show();
             });
 
-            // Ejercicio 7: Eventos .keydown() y .keyup() - Las Voces del Viento
+            // Ejercicio 7
             $("#voces").keydown(function() {
                 const texto = $(this).val();
                 $("#voces-resultado").text(texto);
@@ -167,8 +167,8 @@
                 $("#voces-resultado").text("");
             });
 
-            // Ejercicio 8: Evento .keypress() - La Puerta del Destino
-            const teclaCorrecta = 'x'; // Puedes cambiar esta tecla
+            // Ejercicio 8
+            const teclaCorrecta = 'a'; 
             $(document).keypress(function(event) {
                 const teclaPresionada = event.key;
                 if (teclaPresionada === teclaCorrecta) {

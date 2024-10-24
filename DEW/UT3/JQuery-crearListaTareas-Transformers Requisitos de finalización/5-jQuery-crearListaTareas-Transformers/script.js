@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    // Función para agregar una nueva tarea
     $("#agregar-tarea").click(function() {
         const tarea = $("#nueva-tarea").val();
         if (tarea.trim() !== "") {
@@ -10,13 +9,13 @@ $(document).ready(function(){
                     <button class="eliminar-tarea">Eliminar</button>
                 </li>`;
             $("#lista-tareas").append(nuevaTarea);
-            $("#nueva-tarea").val(""); // Limpiar el input
+            $("#nueva-tarea").val(""); 
         }
     });
 
     // Función para eliminar una tarea
     $(document).on("click", ".eliminar-tarea", function() {
-        $(this).parent().remove(); // Remover la tarea del DOM
+        $(this).parent().remove(); 
     });
 
     // Función para editar una tarea
@@ -30,6 +29,6 @@ $(document).ready(function(){
 
     // Función para limpiar todas las tareas
     $("#limpiar-tareas").click(function() {
-        $("#lista-tareas").empty(); // Vaciar la lista de tareas
+        $("#lista-tareas").empty(); 
     });
 });
