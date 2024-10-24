@@ -95,28 +95,54 @@
         <div class="mensaje" id="sistemaRestaurado">Sistema restaurado</div>
 
         <script>
-        // Ejercicio 1
+        $(document).ready(function() {
+        // Ejercicio 1 
+        $('#iniciarPlan').click(function(event) {
+            event.preventDefault(); 
+            alert("El plan ha sido iniciado, pero no hemos enviado el formulario.");
+        });
 
-
-        // Ejercicio 2
-
+        // Ejercicio 2 
+        $('#sensor').on('mouseenter', function() {
+            $('#mensajeSensor').show();
+        }).on('mouseleave', function() {
+            $('#mensajeSensor').hide();
+        });
 
         // Ejercicio 3
+        $('#activarAlarma').on('click', function() {
+            $('#alarma').show();
+        });
+        $('#desactivarAlarma').on('click', function() {
+            $('#alarma').hide();
+        });
 
-
-        // Ejercicio 4
-
+        // Ejercicio 4 
+        $('#enviarSenal').on('click', function() {
+            $('#todosListos').show();
+        });
 
         // Ejercicio 5
- 
+        $('#esconderse').on('click', function() {
+            $('.ladron5').hide();
+        });
 
         // Ejercicio 6
-
+        $('#moverse').on('click', function() {
+            $('.ladron6').fadeOut();
+        });
 
         // Ejercicio 7
-
+        $('#salir').on('click', function() {
+            $('.ladron7').slideUp();
+        });
 
         // Ejercicio 8
+        $('#restaurar').on('click', function() {
+            $('#sistemaRestaurado').slideDown();
+        });
+    });
+
 
     </script>
     </body>
