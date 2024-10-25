@@ -1,15 +1,19 @@
 $(document).ready(function () {
     let productosSeleccionados = {};
 
+    // Cargar subcategorías al hacer clic en un botón de categoría
     $('.menu-btn').click(function () {
         const categoria = $(this).data('category');
         cargarSubCategorias(categoria);
     });
 
+    // Función para cargar subcategorías
     function cargarSubCategorias(categoria) {
+        // Limpiar subcategorías y productos anteriores
         $('.sub-menu').empty();
         $('.product-list').empty();
        
+        // Definir subcategorías
         const subcategorias = {
             'bebidas': ['Calientes', 'Refrescos', 'Alcohólicas'],
             'primer-plato': ['Sopa', 'Ensalada'],
@@ -17,18 +21,82 @@ $(document).ready(function () {
             'postres': ['Dulces', 'Frutas']
         };
 
+        // Cargar subcategorías dinámicamente
         subcategorias[categoria].forEach(sub => {
             $('.sub-menu').append(`<button class="sub-menu-btn" data-subcategory="${sub}">${sub}</button>`);
         });
 
+        // Agregar evento para cargar productos de la subcategoría
         $('.sub-menu-btn').click(function () {
             const subcategoria = $(this).data('subcategory');
             cargarProductos(subcategoria);
         });
     }
 
-    
+    // Función para cargar productos de una subcategoría
+    function cargarProductos(subcategoria) {
+        // Limpiar productos anteriores
+        $('.product-list').empty();
 
+        $.getJSON('productos.json', function (data) {
+            const productos = data[subcategoria];
+            productos.forEach(producto => {
+                $('.product-list').append(`
+                    <div class="producto" data-id="${producto.id}">
+                        <span>${producto.nombre}</span>
+                        <div class="product_qty">
+                            <button class="btn-decrementar">-</button>
+                            <span class="cantidad">0</span>
+                            <button class="btn-incrementar">+</button>
+                        </div>
+                    </div>
+                `);
+            });
+
+            // Agregar eventos para incrementar y decrementar
+            $('.btn-incrementar').click(function () {
+                const cantidadSpan = $(this).siblings('.cantidad');
+                let cantidad = parseInt(cantidadSpan.text());
+                cantidad++;
+                cantidadSpan.text(cantidad);
+                actualizarProductosSeleccionados($(this).closest('.producto'), cantidad);
+            });
+
+            $('.btn-decrementar').click(function () {
+                const cantidadSpan = $(this).siblings('.cantidad');
+                let cantidad = parseInt(cantidadSpan.text());
+                if (cantidad > 0) {
+                    cantidad--;
+                    cantidadSpan.text(cantidad);
+                    actualizarProductosSeleccionados($(this).closest('.producto'), cantidad);
+                }
+            });
+        });
+    }
+
+    // Función para actualizar la lista de productos seleccionados
+    function actualizarProductosSeleccionados(productoDiv, cantidad) {
+        const productoId = productoDiv.data('id');
+        const productoNombre = productoDiv.find('span').first().text();
+
+        if (cantidad > 0) {
+            productosSeleccionados[productoId] = { nombre: productoNombre, cantidad: cantidad };
+        } else {
+            delete productosSeleccionados[productoId];
+        }
+
+        mostrarProductosSeleccionados();
+    }
+
+    // Función para mostrar productos seleccionados
+    function mostrarProductosSeleccionados() {
+        $('#productos-seleccionados').empty();
+        $.each(productosSeleccionados, function (id, producto) {
+            $('#productos-seleccionados').append(`<li>${producto.nombre}: ${producto.cantidad}</li>`);
+        });
+    }
+
+    // Enviar la comanda
     $('#enviarComanda').click(function () {
         if (Object.keys(productosSeleccionados).length > 0) {
             $('#mensaje-confirmacion').fadeIn().delay(2000).fadeOut();
@@ -39,134 +107,3 @@ $(document).ready(function () {
             alert('No hay productos seleccionados para enviar.');
         }
     });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        $(document).ready(() => {
-            let productosSeleccionados = [];
-            let datosProductos = {};
-          
-            fetch('productos.json')
-              .then(response => response.json())
-              .then(data => {
-                datosProductos = data;
-              })
-              .catch(error => console.error('Error al cargar el archivo JSON:', error));
-          
-            $('.menu-btn').click(function() {
-              let categoria = $(this).data('category');
-              cargarSubCategorias(categoria);
-            });
-          
-            function cargarSubCategorias(categoria) {
-              $('.sub-menu').empty();
-              
-              if (categoria === 'bebidas') {
-                subcategorias = ['Calientes', 'Refrescos', 'Alcohólicas'];
-              } else if (categoria === 'primer-plato') {
-                subcategorias = ['Sopa', 'Ensalada'];
-              } else if (categoria === 'segundo-plato') {
-                subcategorias = ['Carne', 'Pescado', 'Vegetariano'];
-              } else if (categoria === 'postres') {
-                subcategorias = ['Dulces', 'Frutas'];
-              }
-          
-              subcategorias.forEach(subcategoria => {
-                $('.sub-menu').append(`<button class="sub-menu-btn" data-subcategoria="${subcategoria}">${subcategoria}</button>`);
-              });
-            }
-          
-            $(document).on('click', '.sub-menu-btn', function() {
-              let subcategoria = $(this).data('subcategoria');
-              cargarProductos(subcategoria);
-            });
-          
-            function cargarProductos(subcategoria) {
-              $('.product-list').empty();
-              let productos = datosProductos[subcategoria];
-          
-              productos.forEach(producto => {
-                $('.product-list').append(`
-                  <div class="product-item">
-                    <span class="product-label">${producto.nombre}</span>
-                    <div class="cantidad-control">
-                      <button class="decrementar" data-id="${producto.id}">-</button>
-                      <span class="cantidad" id="cantidad-${producto.id}">0</span>
-                      <button class="incrementar" data-id="${producto.id}">+</button>
-                    </div>
-                  </div>
-                `);
-              });
-            }
-          
-            $(document).on('click', '.incrementar', function() {
-              let id = $(this).data('id');
-              actualizarCantidad(id, 1);
-            });
-          
-            $(document).on('click', '.decrementar', function() {
-              let id = $(this).data('id');
-              actualizarCantidad(id, -1);
-            });
-          
-            function actualizarCantidad(id, cambio) {
-              let cantidadElem = $(`#cantidad-${id}`);
-              let cantidadActual = parseInt(cantidadElem.text());
-              let nuevaCantidad = Math.max(cantidadActual + cambio, 0);
-              cantidadElem.text(nuevaCantidad);
-              actualizarProductosSeleccionados(id, nuevaCantidad);
-            }
-          
-            function actualizarProductosSeleccionados(id, cantidad) {
-              let producto = productosSeleccionados.find(item => item.id === id);
-              let nombreProducto = obtenerNombreProducto(id);
-          
-              if (producto) {
-                if (cantidad > 0) {
-                  producto.cantidad = cantidad;
-                } else {
-                  productosSeleccionados = productosSeleccionados.filter(item => item.id !== id);
-                }
-              } else if (cantidad > 0) {
-                productosSeleccionados.push({ id, nombre: nombreProducto, cantidad });
-              }
-              mostrarProductosSeleccionados();
-            }
-          
-            function obtenerNombreProducto(id) {
-              let nombre = '';
-              Object.keys(datosProductos).forEach(subcategoria => {
-                let productoEncontrado = datosProductos[subcategoria].find(producto => producto.id === id);
-                if (productoEncontrado) {
-                  nombre = productoEncontrado.nombre;
-                }
-              });
-              return nombre;
-            }
-          
-            function mostrarProductosSeleccionados() {
-              $('#productos-seleccionados').empty();
-              productosSeleccionados.forEach(item => {
-                $('#productos-seleccionados').append(`<li>${item.nombre}: ${item.cantidad}</li>`);
-              });
-            }
-          
-            $('#enviarComanda').click(() => {
-              $('#mensaje-confirmacion').fadeIn().delay(2000).fadeOut();
-              productosSeleccionados = [];
-              $('.cantidad').text(0);
-              mostrarProductosSeleccionados();
-            });
-          });
