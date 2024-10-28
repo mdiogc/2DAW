@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deportes</title>
+    <link href="deportes_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid container-lg">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="deportes_files/pdc-logo.png" alt="Imagen Gobierno de Canarias" width="20" height="30" class="m-1">
+          Canarias
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center">
+            <li class="nav-item">
+              <a aria-current="page" class="nav-link active" href="https://bootstrap-interactivo-masonry.netlify.app/">Portada</a>
+            </li>
+            <li class="nav-item">
+              
+              <a class="nav-link" href="http://127.0.0.1:5500/DOR/unidad%201/Actividad%203:%20Bootstrap/deportes.html">Deportes</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Islas</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item disabled" href="#">Santa Cruz de Tenerife</a></li>
+                <li><a class="dropdown-item" href="#">Tenerife</a></li>
+                <li><a class="dropdown-item" href="#">La Gomera</a></li>
+                <li><a class="dropdown-item" href="#">La Palma</a></li>
+                <li><a class="dropdown-item" href="#">El Hierro</a></li>
+                <li><a class="dropdown-item disabled" href="#">Las Palmas</a></li>
+                <li><a class="dropdown-item" href="#">Gran Canaria</a></li>
+                <li><a class="dropdown-item" href="#">Fuerteventura</a></li>
+                <li><a class="dropdown-item" href="#">Lanzarote</a></li>
+                <li><a class="dropdown-item" href="#">La Graciosa</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="">Contactanos</a>
+            </li>
+            <li class="nav-item ms-lg-3">
+              <svg data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" title="Advertencia" data-bs-content="Este elemento es un popover y muestra informacion adicional" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+              </svg>
+            </li>
+            <li class="nav-item ms-lg-3" id="liveToastBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"></path>
+              </svg>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input data-bs-toggle="tooltip" data-bs-placement="bottom" title="Realizar una busqueda dentro de la web" class="form-control me-2" type="search" placeholder="Introduzca un termino" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">
+              Buscar
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <nav class="navbar navbar-light bg-light" style="--bs-breadcrumb-divider: '&gt;'" aria-label="breadcrumb">
+      <div class="container-fluid container-lg">
+        <ol class="breadcrumb">
+          <li class="navbar-brand breadcrumb-item">
+            <a href="https://bootstrap-interactivo-masonry.netlify.app/"> Portada </a>
+          </li>
+          <li class="navbar-brand breadcrumb-item active" aria-current="page">
+            Deportes
+          </li>
+        </ol>
+      </div>
+    </nav>
+<div class="container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Deportes</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Rutas</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row" data-masonry="{&quot;percentPosition&quot;: true }" style="position: relative; height: 974.683px;">
+     
+          <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 0px;">
+            <div class="card border border-success">
+              <div class="card-header bg-danger text-white fw-bold">
+                <h4>Destacado</h4>
+              </div>
+                <img src="deportes_files/rutas-marcos-cordero.jpg" alt="Imagen ruta Marcos y Cordero">
+              <div class="card-body">
+                <h5 class="card-title">Ruta de Marcos y Cordero</h5>
+                <p class="card-text">This is a longer card with 
+supporting text below as a natural lead-in to additional content. This 
+content is a little bit longer.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 33.3333%; top: 0px;">
+            <div class="card text-white bg-success border border-success">
+              <div class="card-header">
+                Frase Celebre
+              </div>
+              <div class="card-body">
+                <span class="fw-bold">El Arte</span>
+                <p>"Lorem ipsum dolor sit, amet consectetur adipisicing 
+elit. Corporis facere suscipit laboriosam. Sed voluptatum aliquid atque 
+quidem et! Modi ipsum repellendus accusantium? Neque modi temporibus, 
+vitae ex sint et laborum vitae ex sint et laborum vitae ex sint et 
+laborum."</p>
+                <footer class="blockquote-footer text-white">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 66.6667%; top: 0px;">
+            <div class="card border border-primary">
+              <img src="deportes_files/rutas-barranco-las-vacas.jpg" class="card-img-top" alt="Imagen del Barranco de las vacas">
+              <div class="card-body">
+                <h5 class="card-title">Barranco las Vacas</h5>
+                <p>Gran Canaria</p>
+                <p class="card-text">Lorem ipsum dolor, sit amet 
+consectetur adipisicing elit. Mollitia et explicabo consectetur 
+laudantium aliquid labore aspernatur! Repellendus magnam</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 33.3333%; top: 376px;">
+            <div class="card bg-primary text-white text-center p-3">
+              <figure class="mb-0">
+                <blockquote class="blockquote">
+                  <p>A well-known quote, contained in a blockquote element.</p>
+                </blockquote>
+                <figcaption class="blockquote-footer mb-0 text-white">
+                  Someone famous in <cite title="Source Title">Source Title</cite>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 414.733px;">
+            <div class="card text-center">
+              <img src="deportes_files/rutas-volcanes.jpg" class="card-img" alt="Imagen Ruta de los Volcanes">
+              <div class="card-img-overlay">
+                <h4 class="card-title bg-white">Ruta de Los Volcanes</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 66.6667%; top: 455.35px;">
+            <div class="card">
+              <img src="deportes_files/rutas-teide.jpg" class="card-img-top" alt="Imagen Ruta del Teide">
+              <div class="card-body">
+                <p class="card-text"><small class="text-muted">Ascension al Teide</small></p>
+              </div>
+            </div>
+          </div><div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 33.3333%; top: 545px;">
+            <div class="card text-center border border-info text-white">
+              <div class="card-body bg-info">
+                <h5 class="card-title">Mil Ventanas</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-white">Last updated 3 mins ago</small></p>
+              </div>
+              <img src="deportes_files/rutas-mil-ventanas.jpg" class="card-img-bottom" alt="Imagen mil Ventanas">
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 636.616px;">
+            <div class="card p-3 bg-warning">
+              <figure class="mb-0">
+                <blockquote class="blockquote ">
+                  <p>A well-known quote, contained in a blockquote element.</p>
+                </blockquote>
+                <figcaption class="blockquote-footer mb-0 text-muted">
+                  Someone famous in <cite title="Source Title">Frase motivadora</cite>
+                </figcaption>
+              </figure>
+            </div>
+          
+        </div>
+      </div>
+      </div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="container">
+          <div class="row">
+            <div class="d-flex col-md-6 col-lg-4 gx-0">
+              <div class="card">
+                <img src="deportes_files/buceo.jpg" class="card-img-top" alt="Imagen de buceo">
+                <div class="card-body">
+                  <h5 class="card-title">Buceo</h5>
+                  <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Expedita, maiores iste reprehender asd.
+                  </p>
+                </div>
+                <div class="card-footer text-muted">last update 3 mins ago</div>
+              </div>
+            </div>
+            <div class="d-flex col-md-6 col-lg-4 gx-0">
+              <div class="card">
+                <img src="deportes_files/parapente.jpg" class="card-img-top" alt="Imagen de parapente">
+                <div class="card-body">
+                  <h5 class="card-title">Parapente</h5>
+                  <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur asdasdas asdasd.
+                  </p>
+                </div>
+                <div class="card-footer text-muted text-center">last update 3 mins ago</div>
+              </div>
+            </div>
+            <div class="d-flex col-md-12 col-lg-4 gx-0">
+              <div class="card">
+                <img src="deportes_files/surf.jpg" class="card-img-top" alt="Imagen de surf">
+                <div class="card-body">
+                  <h5 class="card-title">Surf</h5>
+                  <p class="card-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Quaerat odio molestias maxime debitis officia repudiandae velit,
+                    voluptate aut, tempor.
+                  </p>
+                </div>
+                <div class="card-footer text-muted text-end">last update 3 mins ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <script src="deportes_files/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="deportes_files/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async=""></script>
+  
+
+</body></html>
