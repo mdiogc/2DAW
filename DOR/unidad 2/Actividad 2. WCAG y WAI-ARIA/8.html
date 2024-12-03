@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Menú</title>
+  <title>Lista Desplegable</title>
   <style>
-    .submenu {
-      display: none;
-    }
-    .menu:hover .submenu {
-      display: block;
+    body {
+      background-color: #ffffff;
+      color: #000000;
     }
   </style>
 </head>
 <body>
-  <h1>Menú</h1>
-  <div class="menu">
-    Opciones
-    <div class="submenu">
-      <p>Opción 1</p>
-      <p>Opción 2</p>
-    </div>
-  </div>
+  <h1>Seleccionar Opción</h1>
+  <button aria-expanded="false" aria-controls="menu">Abrir Menú</button>
+  <ul id="menu" style="display:none;">
+    <li><a href="#">Opción 1</a></li>
+    <li><a href="#">Opción 2</a></li>
+  </ul>
 </body>
 </html>
