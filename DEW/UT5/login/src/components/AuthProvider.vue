@@ -1,37 +1,36 @@
 <script setup lang="ts">
-import { ref, provide, onMounted } from 'vue';
+import { ref, provide, onMounted, onUnmounted } from 'vue';
 
 const isAuthenticated = ref(false);
-const userToken = ref<string | null>(null);
 
-const login = (token: string) => {
-  userToken.value = token;
-  isAuthenticated.value = true;
-  sessionStorage.setItem('authToken', token);
+// Simulación de la función que genera un token
+const generateToken = () => {
+  return Math.random().toString(36).substr(2); // Genera un token aleatorio
 };
 
-const logout = () => {
-  userToken.value = null;
-  isAuthenticated.value = false;
-  sessionStorage.removeItem('authToken');
-};
-
+// Al montar el componente, comprobar si hay un token en SessionStorage
 onMounted(() => {
   const token = sessionStorage.getItem('authToken');
   if (token) {
-    userToken.value = token;
     isAuthenticated.value = true;
   }
 });
 
-provide('auth', {
-  isAuthenticated,
-  userToken,
-  login,
-  logout,
+// Al desmontar el componente, limpiar la sesión
+onUnmounted(() => {
+  sessionStorage.removeItem('authToken');
+  isAuthenticated.value = false;
 });
-</script>
 
-<template>
-  <slot></slot>
-</template>
+// Función para iniciar sesión
+const login = (email: string, password: string) => {
+  // Simula la autenticación
+  const token = generateToken();
+  sessionStorage.setItem('authToken', token);
+  isAuthenticated.value = true;
+  return token;
+};
+
+provide('authState', isAuthenticated);
+provide('login', login);
+</script>
