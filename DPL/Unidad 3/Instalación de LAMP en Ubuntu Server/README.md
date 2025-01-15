@@ -41,7 +41,7 @@ Para verificar la versión de MariaDB instalada:
 ```bash
 mariadb --version
 ```
-![versión](img/versión.png)
+![versión](img/versionmaria.png)
 
 
 Capturas de pantalla del proceso de configuración de seguridad:
