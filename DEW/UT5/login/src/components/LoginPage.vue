@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { inject } from 'vue';
 import { ref } from 'vue';
-
+import { login } from '@/services/authService'; 
 const authState = inject('authState');
 const login = inject('login');
 

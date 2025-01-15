@@ -28,7 +28,6 @@ const router = createRouter({
   routes,
 });
 
-// Middleware de protección de rutas
 router.beforeEach((to, from, next) => {
   const token = sessionStorage.getItem('authToken');
   if (to.meta.requiresAuth && !token) {
