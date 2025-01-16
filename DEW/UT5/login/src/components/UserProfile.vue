@@ -1,14 +1,13 @@
+<template>
+  <div>
+    <h1>Perfil de Usuario</h1>
+    <p>Bienvenido, {{ auth.user }}</p>
+    <button @click="auth.logout">Cerrar Sesión</button>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { inject } from 'vue';
 
-const authState = inject('authState');
+const auth = inject('auth');
 </script>
-
-<template>
-  <div v-if="authState">
-    <h1>Bienvenido, Usuario</h1>
-  </div>
-  <div v-else>
-    <p>No estás autenticado. Por favor, inicia sesión.</p>
-  </div>
-</template>

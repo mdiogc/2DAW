@@ -1,36 +1,19 @@
+
+<template>
+  <div v-if="user">Welcome, {{ user.displayName }}!</div>
+  <div v-else>Please log in.</div>
+</template>
+
 <script setup lang="ts">
-import { ref, provide, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted } from 'vue';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebaseConfig';
 
-const isAuthenticated = ref(false);
+const user = ref(null);
 
-// Simulación de la función que genera un token
-const generateToken = () => {
-  return Math.random().toString(36).substr(2); // Genera un token aleatorio
-};
-
-// Al montar el componente, comprobar si hay un token en SessionStorage
 onMounted(() => {
-  const token = sessionStorage.getItem('authToken');
-  if (token) {
-    isAuthenticated.value = true;
-  }
+  onAuthStateChanged(auth, (currentUser) => {
+    user.value = currentUser;
+  });
 });
-
-// Al desmontar el componente, limpiar la sesión
-onUnmounted(() => {
-  sessionStorage.removeItem('authToken');
-  isAuthenticated.value = false;
-});
-
-// Función para iniciar sesión
-const login = (email: string, password: string) => {
-  // Simula la autenticación
-  const token = generateToken();
-  sessionStorage.setItem('authToken', token);
-  isAuthenticated.value = true;
-  return token;
-};
-
-provide('authState', isAuthenticated);
-provide('login', login);
 </script>

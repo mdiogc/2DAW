@@ -1,6 +1,6 @@
-import './assets/main.css'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import AuthProvider from './components/AuthProvider.vue';
 
-import { createApp } from 'vue'
-import App from './App.vue'
-
-createApp(App).mount('#app')
+createApp(AuthProvider).use(router).mount('#app');

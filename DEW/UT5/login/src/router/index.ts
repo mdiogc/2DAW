@@ -1,40 +1,27 @@
+// src/router/index.ts
 import { createRouter, createWebHistory } from 'vue-router';
+import { auth } from '../firebaseConfig'; // Importa auth
+import Shop from '../components/Shop.vue';
 import LoginPage from '../components/LoginPage.vue';
-import UserProfile from '../components/UserProfile.vue';
 
 const routes = [
+  { path: '/login', component: LoginPage },
   {
-    path: '/login',
-    component: LoginPage,
-  },
-  {
-    path: '/home',
-    component: HomePage,
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/profile',
-    component: UserProfile,
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/',
-    redirect: '/login',
+    path: '/shop',
+    component: Shop,
+    beforeEnter: (to, from, next) => {
+      if (auth.currentUser) {
+        next(); // Permitir el acceso a la tienda
+      } else {
+        next('/login'); // Redirigir al login si no está autenticado
+      }
+    },
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-});
-
-router.beforeEach((to, from, next) => {
-  const token = sessionStorage.getItem('authToken');
-  if (to.meta.requiresAuth && !token) {
-    next('/login');
-  } else {
-    next();
-  }
 });
 
 export default router;
