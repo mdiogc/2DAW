@@ -114,3 +114,5 @@ CREATE DATABASE phpmyadmin;
 Accede al panel de control de phpMyAdmin en la siguiente URL: `http://lamp.com/phpmyadmin`
 
 ![php](img/php.png)
+
+
