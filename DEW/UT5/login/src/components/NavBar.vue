@@ -1,89 +1,24 @@
+<script setup lang="ts">
+import { isAuthenticated, logout } from './AuthProvider.vue';
+</script>
+
 <template>
-  <header>
-    <nav>
-      <ul>
-        <li><router-link to="/login">Login</router-link></li>
-        <li><router-link to="/shop">Shop</router-link></li>
-      </ul>
-    </nav>
-  </header>
+    <header class="p-3">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <ul class="nav col-6 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <RouterLink to="/" class="nav-link px-2">Home</RouterLink>
+                    <RouterLink to="/shop" class="nav-link px-2">Shop</RouterLink>
+                </ul>
+
+                <div v-if="isAuthenticated">
+                    <button class="btn btn-danger" @click="logout">Logout</button>
+                </div>
+                <div class="text-end" v-else>
+                    <RouterLink to="/login" class="btn btn-primary mx-2 px-2">Login</RouterLink>
+                    <RouterLink to="/signup" class="btn btn-warning px-2">Signup</RouterLink>
+                </div>
+            </div>
+        </div>
+    </header>
 </template>
-
-<script setup>
-</script>
-
-<style>
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 1rem;
-}
-
-nav a {
-  text-decoration: none;
-  color: white;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-</style>
-
-
-<script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { auth } from '../firebaseConfig'; // Asegúrate de que esta ruta sea correcta.
-
-const router = useRouter();
-
-// Estado para verificar si el usuario está autenticado.
-const isAuthenticated = ref(auth.currentUser !== null);
-
-// Escuchar cambios en el estado de autenticación.
-auth.onAuthStateChanged((user) => {
-  isAuthenticated.value = !!user;
-});
-
-// Función para cerrar sesión.
-const logout = async () => {
-  try {
-    await auth.signOut();
-    router.push('/login'); // Redirige al usuario al login después de cerrar sesión.
-  } catch (error) {
-    console.error('Error logging out:', error);
-  }
-};
-</script>
-
-<style scoped>
-nav {
-  display: flex;
-  justify-content: space-between;
-  background-color: #333;
-  color: white;
-  padding: 1rem;
-}
-
-ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  margin: 0 1rem;
-}
-
-a {
-  color: white;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-</style>

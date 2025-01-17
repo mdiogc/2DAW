@@ -1,18 +1,34 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Shop from '../components/Shop.vue';
-import LoginPage from '../components/LoginPage.vue';
-import HomeView from '../views/HomeView.vue'; // Asegúrate de importar HomeView o algún otro componente
+import { createRouter, createWebHistory } from 'vue-router'
+
+import { isAuthenticated } from '@/components/AuthProvider.vue'
+import HomeView from '@/views/HomeView.vue'
+import LoginPage from '@/views/ LoginPage.vue'
+import ShopPage from '@/views/Shop.vue'
+import SignupPage from '@/views/SignupPage.vue'
+import UserProfile from '@/views/UserProfile.vue'
 
 const routes = [
-  { path: '/', component: HomeView }, // Ruta raíz que apunta a HomeView
-  { path: '/login', component: LoginPage },
-  { path: '/shop', component: Shop },
-  { path: '/:pathMatch(.*)*', redirect: '/' }, // Redirigir cualquier ruta no encontrada a la raíz
-];
+  { path: '/', redirect: '/home' },
+  { path: '/home', component: HomeView, name: 'home' },
+  { path: '/login', component: LoginPage, name: 'login' },
+  { path: '/signup', component: SignupPage, name: 'signup' },
+  { path: '/shop', component: ShopPage, name: 'shop' },
+  { path: '/profile', component: UserProfile, name: 'profile' },
+]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-});
+})
 
-export default router;
+router.beforeEach((to, from) => {
+  if (!isAuthenticated.value) {
+    if (to.name != 'login' && to.name != 'signup') {
+      alert('Primero necesitas iniciar sesión.')
+      return { name: 'login' }
+    }
+  }
+  return true
+})
+
+export default router
