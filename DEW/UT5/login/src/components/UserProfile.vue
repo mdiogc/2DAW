@@ -1,13 +1,20 @@
+<script setup>
+import { inject } from 'vue';
+
+const { user } = inject('auth'); // Accede al estado del usuario
+</script>
+
 <template>
-  <div>
-    <h1>Perfil de Usuario</h1>
-    <p>Bienvenido, {{ auth.user }}</p>
-    <button @click="auth.logout">Cerrar Sesión</button>
+  <div class="user-profile">
+    <h1>Perfil del Usuario</h1>
+    <p v-if="user">Correo: {{ user.email }}</p>
+    <p v-else>No has iniciado sesión.</p>
   </div>
 </template>
 
-<script setup lang="ts">
-import { inject } from 'vue';
-
-const auth = inject('auth');
-</script>
+<style scoped>
+.user-profile {
+  padding: 2rem;
+  text-align: center;
+}
+</style>

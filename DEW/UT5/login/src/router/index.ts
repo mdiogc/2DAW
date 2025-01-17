@@ -1,22 +1,13 @@
-// src/router/index.ts
 import { createRouter, createWebHistory } from 'vue-router';
-import { auth } from '../firebaseConfig'; // Importa auth
 import Shop from '../components/Shop.vue';
 import LoginPage from '../components/LoginPage.vue';
+import HomeView from '../views/HomeView.vue'; // Asegúrate de importar HomeView o algún otro componente
 
 const routes = [
+  { path: '/', component: HomeView }, // Ruta raíz que apunta a HomeView
   { path: '/login', component: LoginPage },
-  {
-    path: '/shop',
-    component: Shop,
-    beforeEnter: (to, from, next) => {
-      if (auth.currentUser) {
-        next(); // Permitir el acceso a la tienda
-      } else {
-        next('/login'); // Redirigir al login si no está autenticado
-      }
-    },
-  },
+  { path: '/shop', component: Shop },
+  { path: '/:pathMatch(.*)*', redirect: '/' }, // Redirigir cualquier ruta no encontrada a la raíz
 ];
 
 const router = createRouter({

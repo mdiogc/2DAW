@@ -1,18 +1,30 @@
+<script setup>
+import { inject } from 'vue';
 
-<template>
-  <button @click="logoutUser">Logout</button>
-</template>
+const { logout } = inject('auth');
 
-<script setup lang="ts">
-import { signOut } from 'firebase/auth';
-import { auth } from '../firebaseConfig';
-
-const logoutUser = async () => {
-  try {
-    await signOut(auth);
-    console.log('Sesión cerrada');
-  } catch (error) {
-    console.error('Error al cerrar sesión:', error);
-  }
+const handleLogout = async () => {
+  await logout();
+  alert('Sesión cerrada exitosamente.');
 };
 </script>
+
+<template>
+  <button @click="handleLogout" class="logout-button">
+    Cerrar sesión
+  </button>
+</template>
+
+<style scoped>
+.logout-button {
+  padding: 0.5rem 1rem;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.logout-button:hover {
+  background-color: #c9302c;
+}
+</style>
