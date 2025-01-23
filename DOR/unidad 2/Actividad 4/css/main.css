@@ -1,0 +1,101 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #000000;
+}
+header .logo {
+  width: 60px;
+  height: 40px;
+  background-image: url("../assets/img/sass.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+header h1 {
+  font-size: 24px;
+  color: #ff69b4;
+  margin-right: auto;
+}
+header nav {
+  display: flex;
+  align-items: center;
+  background-color: #000000;
+}
+header nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+header nav ul li {
+  margin: 0 10px;
+}
+header nav ul li a {
+  color: #ff69b4;
+  text-decoration: none;
+}
+header nav ul li a:hover {
+  color: #ff69b4;
+}
+header nav .fas {
+  margin-left: 20px;
+  color: #ff69b4;
+  cursor: pointer;
+}
+header nav .fas:hover {
+  color: #ff69b4;
+}
+
+main {
+  background-color: #ffffff;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+.cards .card {
+  display: flex;
+  flex-direction: column;
+  width: calc(33.333% - 20px);
+  height: 300px;
+  border: 1px solid #ff69b4;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #000000;
+  overflow: hidden;
+  background-color: #000000;
+}
+.cards .card .card-image {
+  flex: 0 0 40%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.cards .card .card-content {
+  padding: 10px;
+  flex: 1;
+}
+.cards .card .card-content h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #ff69b4;
+}
+.cards .card .card-content .date {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+.cards .card .card-content p {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+body {
+  font-family: "Dancing Script", cursive;
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  color: #ffffff;
+}/*# sourceMappingURL=main.css.map */
