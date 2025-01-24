@@ -1,47 +1,39 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  stock: number;
-  color: string;
-  size: string;
+interface CartItem extends Flower {
+  cartQuantity: number // Cantidad en el carrito
 }
 
-interface CartItem extends Product {
-  quantity: number;
+export interface CartState {
+  items: CartItem[]
 }
 
 export const useCartStore = defineStore('cart', {
-  state: () => ({
-    items: [] as CartItem[],
+  state: (): CartState => ({
+    items: [],
   }),
   getters: {
-    totalPrice: (state) => {
-      return state.items.reduce((total, item) => total + item.price * item.quantity, 0);
-    },
+    total: (state) => state.items.reduce((sum, item) => sum + item.price * item.cartQuantity, 0),
     itemCount: (state) => state.items.length,
   },
   actions: {
-    addProduct(product: Product, quantity: number) {
-      const existingItem = this.items.find((item) => item.id === product.id);
+    addToCart(product: Flower) {
+      const existingItem = this.items.find((item) => item.id === product.id)
       if (existingItem) {
-        existingItem.quantity += quantity;
+        existingItem.cartQuantity++
       } else {
-        this.items.push({ ...product, quantity });
+        this.items.push({ ...product, cartQuantity: 1 })
       }
     },
-    removeProduct(id: string) {
-      this.items = this.items.filter((item) => item.id !== id);
+    removeFromCart(productId: number) {
+      this.items = this.items.filter((item) => item.id !== productId)
     },
-    updateQuantity(id: string, quantity: number) {
-      const item = this.items.find((item) => item.id === id);
-      if (item) item.quantity = quantity;
+    updateQuantity(productId: number, quantity: number) {
+      const item = this.items.find((item) => item.id === productId)
+      if (item) item.cartQuantity = quantity
     },
     clearCart() {
-      this.items = [];
+      this.items = []
     },
   },
-});
+})

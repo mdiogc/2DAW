@@ -1,32 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import ProductList from '@/views/ProductList.vue';
-import Cart from '@/views/Cart.vue';
+import { createRouter, createWebHistory } from 'vue-router'
+import FlowerList from '@/views/FlowerList.vue'
+import Cart from '@/components/Cart.vue'
 
 const routes = [
-  {
-    path: '/',
-    name: 'Tienda',
-    component: ProductList,
-    meta: { title: 'Tienda' },
-  },
-  {
-    path: '/cart',
-    name: 'Carrito',
-    component: Cart,
-    meta: { title: 'Carrito' },
-  },
-];
+  { path: '/', component: FlowerList },
+  { path: '/cart', component: Cart },
+]
 
-const router = createRouter({
+export default createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    } else {
-      return { top: 0, left: 0, behavior: 'smooth' };
-    }
-  },
-});
-
-export default router;
+})

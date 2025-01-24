@@ -1,27 +1,28 @@
+<script lang="ts">
+import type { Flower } from '@components/classes/Flower'
+import { onMounted, ref } from 'vue'
+
+const flowers = ref<Flower[] | null>(null)
+
+async function getFlowersData() {
+  const response = await fetch('flower.json')
+  const data = await response.json()
+  return data
+}
+
+onMounted(async () => {
+  flowers.value = await getFlowersData()
+})
+</script>
+
 <template>
-    <div class="product-list">
-      <h1>Products</h1>
-      <ProductItem
-        v-for="product in products"
-        :key="product.id"
-        :product="product"
-      />
-    </div>
-  </template>
-  
-  <script lang="ts">
-  import { defineComponent } from 'vue';
-  import ProductItem from '@/components/ProductItem.vue';
-  
-  export default defineComponent({
-    components: { ProductItem },
-    setup() {
-      const products = [
-        { id: '1', name: 'Shirt', price: 20, stock: 10, image: '/shirt.jpg', color: 'red', size: 'M' },
-        { id: '2', name: 'Pants', price: 40, stock: 5, image: '/pants.jpg', color: 'blue', size: 'L' },
-      ];
-      return { products };
-    },
-  });
-  </script>
-  
+  <div class="product-list">
+    <h1>Products</h1>
+    <ProductItem
+      v-for="flower in flowers"
+      :key="flower.id"
+      :name="flower.name"
+      :description="flower.description"
+    />
+  </div>
+</template>

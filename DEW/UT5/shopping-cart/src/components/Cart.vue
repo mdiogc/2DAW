@@ -19,27 +19,27 @@ export default {
   data() {
     return {
       cartItems: JSON.parse(localStorage.getItem('cart')) || [],
-    };
+    }
   },
   computed: {
     totalPrice() {
-      return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+      return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
     },
   },
   methods: {
     removeItem(id) {
-      this.cartItems = this.cartItems.filter(item => item.id !== id);
-      this.updateLocalStorage();
+      this.cartItems = this.cartItems.filter((item) => item.id !== id)
+      this.updateLocalStorage()
     },
     emptyCart() {
-      this.cartItems = [];
-      this.updateLocalStorage();
+      this.cartItems = []
+      this.updateLocalStorage()
     },
     updateLocalStorage() {
-      localStorage.setItem('cart', JSON.stringify(this.cartItems));
+      localStorage.setItem('cart', JSON.stringify(this.cartItems))
     },
   },
-};
+}
 </script>
 
 <style scoped>
@@ -47,6 +47,3 @@ export default {
   padding: 20px;
 }
 </style>
-
-
-
