@@ -3,40 +3,28 @@
     <img :src="flower.image" class="card-img-top" alt="flower image" />
     <div class="card-body">
       <h5 class="card-title">{{ flower.name }}</h5>
-      <p class="card-text">${{ flower.price.toFixed(2) }}</p>
-      <button class="btn btn-primary w-100" @click="addToCart">Añadir al carrito</button>
+      <p class="card-text">{{ flower.description }}</p>
+      <p class="card-text fw-bold">${{ flower.price.toFixed(2) }}</p>
+      <button
+        class="btn btn-primary w-100"
+        :disabled="flower.quantity === 0"
+        @click="addToCart(flower)"
+      >
+        {{ flower.quantity > 0 ? 'Añadir al carrito' : 'Agotado' }}
+      </button>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { useCartStore } from '@/stores/cart'
+<script setup lang="ts">
+import type { Flower } from './classes/Flower';
+import { useCart } from '@/composable/useCart';
 
-export default defineComponent({
-  name: 'FlowerItem',
-  props: {
-    flower: {
-      type: Object as PropType<{
-        id: number
-        name: string
-        image: string
-        price: number
-        quantity: number
-      }>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const cartStore = useCartStore()
+const prop = defineProps<{
+  flower: Flower;
+}>();
 
-    const addToCart = () => {
-      cartStore.addToCart(props.flower)
-    }
-
-    return { addToCart }
-  },
-})
+const { addToCart } = useCart();
 </script>
 
 <style scoped>

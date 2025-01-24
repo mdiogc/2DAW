@@ -5,5 +5,4 @@ export interface Flower {
   price: number
   quantity: number
   description: string
-  category: string
 }

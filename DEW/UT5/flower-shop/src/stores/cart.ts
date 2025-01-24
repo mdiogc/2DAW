@@ -1,39 +1,44 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
-interface CartItem extends Flower {
-  cartQuantity: number // Cantidad en el carrito
-}
-
-export interface CartState {
-  items: CartItem[]
+export interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string;
 }
 
 export const useCartStore = defineStore('cart', {
-  state: (): CartState => ({
-    items: [],
+  state: () => ({
+    items: [] as CartItem[],
   }),
   getters: {
-    total: (state) => state.items.reduce((sum, item) => sum + item.price * item.cartQuantity, 0),
-    itemCount: (state) => state.items.length,
+    totalItems: (state) => state.items.reduce((total, item) => total + item.quantity, 0),
+    totalPrice: (state) =>
+      state.items.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2),
   },
   actions: {
-    addToCart(product: Flower) {
-      const existingItem = this.items.find((item) => item.id === product.id)
+    addToCart(flower: CartItem) {
+      const existingItem = this.items.find((item) => item.id === flower.id);
       if (existingItem) {
-        existingItem.cartQuantity++
+        existingItem.quantity += 1;
       } else {
-        this.items.push({ ...product, cartQuantity: 1 })
+        this.items.push({ ...flower, quantity: 1 });
       }
     },
-    removeFromCart(productId: number) {
-      this.items = this.items.filter((item) => item.id !== productId)
+    removeFromCart(id: number) {
+      this.items = this.items.filter((item) => item.id !== id);
     },
-    updateQuantity(productId: number, quantity: number) {
-      const item = this.items.find((item) => item.id === productId)
-      if (item) item.cartQuantity = quantity
+    updateQuantity(id: number, quantity: number) {
+      const item = this.items.find((item) => item.id === id);
+      if (item && quantity > 0) {
+        item.quantity = quantity;
+      } else {
+        this.removeFromCart(id);
+      }
     },
     clearCart() {
-      this.items = []
+      this.items = [];
     },
   },
-})
+});

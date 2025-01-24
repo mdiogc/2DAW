@@ -1,13 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import FlowerList from '@/views/FlowerList.vue'
-import Cart from '@/components/Cart.vue'
+import Cart from '@/views/Cart.vue'
 
 const routes = [
-  { path: '/', component: FlowerList },
-  { path: '/cart', component: Cart },
+  {
+    path: '/',
+    name: 'home',
+    component: FlowerList,
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: Cart,
+  },
 ]
 
-export default createRouter({
-  history: createWebHistory(),
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes,
 })
+
+export default router

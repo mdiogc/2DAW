@@ -5,8 +5,7 @@
       "image": "/images/rosas-rojas.jpg",
       "price": 12.99,
       "quantity": 10,
-      "description": "Un ramo de elegantes rosas rojas frescas, perfectas para ocasiones románticas.",
-      "category": "Románticas"
+      "description": "Un ramo de elegantes rosas rojas frescas, perfectas para ocasiones románticas."
     },
     {
       "id": 2,
@@ -14,8 +13,7 @@
       "image": "/images/tulipanes-amarillos.jpg",
       "price": 9.99,
       "quantity": 15,
-      "description": "Vibrantes tulipanes amarillos que iluminan cualquier espacio.",
-      "category": "Primaverales"
+      "description": "Vibrantes tulipanes amarillos que iluminan cualquier espacio."
     },
     {
       "id": 3,
@@ -23,8 +21,7 @@
       "image": "/images/orquideas-blancas.jpg",
       "price": 19.99,
       "quantity": 8,
-      "description": "Elegantes orquídeas blancas, símbolo de pureza y belleza.",
-      "category": "Exóticas"
+      "description": "Elegantes orquídeas blancas, símbolo de pureza y belleza."
     },
     {
       "id": 4,
@@ -32,8 +29,7 @@
       "image": "/images/girasoles.jpg",
       "price": 7.99,
       "quantity": 20,
-      "description": "Grandes y brillantes girasoles que traen alegría a cualquier lugar.",
-      "category": "Campestres"
+      "description": "Grandes y brillantes girasoles que traen alegría a cualquier lugar."
     },
     {
       "id": 5,
@@ -41,8 +37,7 @@
       "image": "/images/claveles-rosados.jpg",
       "price": 6.49,
       "quantity": 30,
-      "description": "Delicados claveles rosados ideales para regalar en cumpleaños o aniversarios.",
-      "category": "Delicadas"
+      "description": "Delicados claveles rosados ideales para regalar en cumpleaños o aniversarios."
     },
     {
       "id": 6,
@@ -50,8 +45,7 @@
       "image": "/images/lirios-blancos.jpg",
       "price": 14.99,
       "quantity": 12,
-      "description": "Aromáticos lirios blancos que simbolizan la pureza y tranquilidad.",
-      "category": "Aromáticas"
+      "description": "Aromáticos lirios blancos que simbolizan la pureza y tranquilidad."
     },
     {
       "id": 7,
@@ -59,8 +53,7 @@
       "image": "/images/margaritas.jpg",
       "price": 5.99,
       "quantity": 25,
-      "description": "Hermosas margaritas frescas, perfectas para alegrar el día de alguien especial.",
-      "category": "Clásicas"
+      "description": "Hermosas margaritas frescas, perfectas para alegrar el día de alguien especial."
     },
     {
       "id": 8,
@@ -68,8 +61,7 @@
       "image": "/images/peonias-rosas.jpg",
       "price": 22.99,
       "quantity": 5,
-      "description": "Peonías rosadas de lujo para los amantes de las flores únicas.",
-      "category": "Lujo"
+      "description": "Peonías rosadas de lujo para los amantes de las flores únicas."
     },
     {
       "id": 9,
@@ -77,8 +69,7 @@
       "image": "/images/rosas-arcoiris.jpg",
       "price": 29.99,
       "quantity": 3,
-      "description": "Impresionantes rosas teñidas con los colores del arcoíris, para ocasiones únicas.",
-      "category": "Exóticas"
+      "description": "Impresionantes rosas teñidas con los colores del arcoíris, para ocasiones únicas."
     }
   ]
   
