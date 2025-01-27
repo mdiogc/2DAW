@@ -4,32 +4,82 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  font-weight: normal;
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
 }
 
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+  color: #0077cc;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.3s,
+    border-bottom 0.3s;
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    color: #0056a3;
+    border-bottom: 2px solid #0056a3;
   }
 }
 
 @media (min-width: 1024px) {
   body {
     display: flex;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    min-height: 100vh;
   }
 
   #app {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
   }
+}
+
+button {
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    transform 0.2s;
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #388e3c, #66bb6a);
+  transform: scale(1.05);
+}
+
+.error {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.message-box {
+  background: #e3f2fd;
+  color: #1e88e5;
+  border: 1px solid #90caf9;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

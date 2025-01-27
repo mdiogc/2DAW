@@ -1,34 +1,79 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import { isAuthenticated } from '@/components/AuthProvider.vue'
-import HomeView from '@/views/HomeView.vue'
-import LoginPage from '@/views/ LoginPage.vue'
-import ShopPage from '@/views/Shop.vue'
-import SignupPage from '@/views/SignupPage.vue'
+import Login from '@/components/UserLogin.vue'
+import Signup from '@/components/UserSignup.vue'
+import MyShop from '@/components/MyShop.vue'
 import UserProfile from '@/views/UserProfile.vue'
+import { auth } from '../firebase'
+
+// Configura las rutas
+const requireAuth = (to: any, from: any, next: any) => {
+  if (auth.currentUser) {
+    next()
+  } else {
+    next('/login')
+  }
+}
 
 const routes = [
-  { path: '/', redirect: '/home' },
-  { path: '/home', component: HomeView, name: 'home' },
-  { path: '/login', component: LoginPage, name: 'login' },
-  { path: '/signup', component: SignupPage, name: 'signup' },
-  { path: '/shop', component: ShopPage, name: 'shop' },
-  { path: '/profile', component: UserProfile, name: 'profile' },
+  {
+    path: '/',
+    redirect: '/login',
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+  },
+  {
+    path: '/Signup',
+    name: 'Signup',
+    component: Signup,
+  },
+  {
+    path: '/shop',
+    name: 'Shop',
+    component: MyShop,
+    beforeEnter: requireAuth,
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: UserProfile,
+    beforeEnter: requireAuth,
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
-})
-
-router.beforeEach((to, from) => {
-  if (!isAuthenticated.value) {
-    if (to.name != 'login' && to.name != 'signup') {
-      alert('Primero necesitas iniciar sesión.')
-      return { name: 'login' }
-    }
-  }
-  return true
+  routes: [
+    {
+      path: '/',
+      redirect: '/login',
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login,
+    },
+    {
+      path: '/Signup',
+      name: 'Signup',
+      component: Signup,
+    },
+    {
+      path: '/shop',
+      name: 'Shop',
+      component: MyShop,
+      beforeEnter: requireAuth,
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: UserProfile,
+      beforeEnter: requireAuth,
+    },
+  ],
 })
 
 export default router

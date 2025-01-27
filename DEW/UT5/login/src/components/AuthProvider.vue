@@ -1,97 +1,63 @@
-<script lang="ts">
-import DatabaseConnection from '@/firebase/firebase';
-import { ref, provide, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+<template>
+  <slot></slot>
+</template>
 
-const database = new DatabaseConnection()
-const isAuthenticated = ref(false);
-const token = ref('');
+<script setup lang="ts">
+import { ref, onMounted, provide } from 'vue'
+import { useRouter } from 'vue-router'
+
+const isAuthenticated = ref(false)
+const token = ref<string | null>(null)
+const tokenExpiration = ref<number | null>(null)
 const router = useRouter()
 
-function emailIsValid(email: string): boolean {
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return regex.test(email);
+// Función para simular la generación de un token
+const generateToken = () => {
+  const newToken = 'not_token_123' // Simulamos un token
+  const expirationTime = Date.now() + 30000 // 5 minutos
+  sessionStorage.setItem('authToken', newToken)
+  sessionStorage.setItem('tokenExpiration', expirationTime.toString())
+  token.value = newToken
+  tokenExpiration.value = expirationTime
+  isAuthenticated.value = true
+  return token
 }
 
-function passwordIsValid(password: string): boolean {
-    const hasMinLength = password.length >= 8;
-    const hasNumber = /[0-9]/.test(password);
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasSpecialChar = /\W/.test(password);
-    return hasMinLength && hasNumber && hasUpperCase && hasSpecialChar;
-}
-
-function isInputValid(email: string, password: string): boolean {
-    if (emailIsValid(email) == false) {
-        alert('Email no válido!')
-        return false
-    }
-    if (passwordIsValid(password) == false) {
-        alert('Contraseña no válida, debe tener al menos 8 caracteres, una letra mayúscula, un número y un símbolo especial.')
-        return false
-    }
-    return true
-}
-
-function generateToken() {
-    const newToken = Math.random().toString(36).substring(2)
-    sessionStorage.setItem('token', newToken);
-    isAuthenticated.value = true;
-    token.value = newToken;
-    provide('isAuthenticated', isAuthenticated.value)
-    provide('token', token.value)
-    return newToken
-}
-
-async function signup(email: string, password: string) {
-    if (isInputValid(email, password) == false) {
-        throw new Error('Credenciales no válidas')
-    }
-    const userData = {
-        email: email,
-        password: password
-    }
-    if (await database.userExists(email) == false) {
-        await database.createAccount(userData)
-        alert("El usuario acaba de ser creado, por favor, inicie sesión")
-    } else {
-        alert("El usuario ya existe")
-    }
-}
-
-async function login(email: string, password: string) {
-    if (isInputValid(email, password) == false) {
-        throw new Error('Credenciales no válidas')
-    }
-    const userData = {
-        email: email,
-        password: password
-    }
-    if (await database.authenticate(email, password)) {
-        const token = generateToken()
-        alert('Has iniciado sesión, tu token de sesión es ' + token);
-        router.push('/home'); 
-    }
-}
-
-function logout() {
-    isAuthenticated.value = false;
-    sessionStorage.setItem('token', '')
-    token.value = ''
-    provide('isAuthenticated', isAuthenticated.value)
-    provide('token', token.value)
-    alert('Gracias por su visita en esta hermosa página. Esperamos verlo pronto.')
-}
-
+// Verificar si el token está presente y no ha expirado en sessionStorage
 onMounted(() => {
-    
+  const storedToken = sessionStorage.getItem('authToken')
+  const storedExpiration = sessionStorage.getItem('tokenExpiration')
+  if (storedToken && storedExpiration) {
+    const expirationTime = parseInt(storedExpiration, 10)
+    if (Date.now() < expirationTime) {
+      token.value = storedToken
+      tokenExpiration.value = expirationTime
+      isAuthenticated.value = true
+    } else {
+      // Token ha expirado
+      sessionStorage.removeItem('authToken')
+      sessionStorage.removeItem('tokenExpiration')
+      token.value = null
+      tokenExpiration.value = null
+      isAuthenticated.value = false
+      router.push('/login') // Redirige al usuario al login
+    }
+  } else {
+    isAuthenticated.value = false
+  }
 })
 
-export { signup, login, logout, isAuthenticated }
-</script>
+// Limpiar datos al cerrar sesión
+const logout = () => {
+  sessionStorage.removeItem('authToken')
+  sessionStorage.removeItem('tokenExpiration')
+  token.value = null
+  tokenExpiration.value = null
+  isAuthenticated.value = false
+}
 
-<template>
-    <div class="container">
-        <slot></slot>
-    </div>
-</template>
+provide('isAuthenticated', isAuthenticated)
+provide('token', token)
+provide('generateToken', generateToken)
+provide('logout', logout)
+</script>
